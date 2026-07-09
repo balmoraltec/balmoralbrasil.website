@@ -828,7 +828,7 @@ body {
 }
 
 
-.solucao-content h2.section-title-gold {
+.section-title-gold {
     font-family: 'Playfair Display', serif;
     font-size: clamp(2.5rem, 5vw, 3.5rem);
     margin-bottom: 30px;
@@ -971,6 +971,11 @@ body {
     background: var(--verde-musgo-profundo);
     border-radius: 30px;
     text-align: center;
+}
+
+.deliverables-wrapper .section-title-gold {
+    color: var(--branco);
+    -webkit-text-stroke: 1px var(--dourado);
 }
 
 .deliverables-grid {
