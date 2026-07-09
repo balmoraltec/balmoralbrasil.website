@@ -976,6 +976,7 @@ body {
 .deliverables-wrapper .section-title-gold {
     color: var(--branco);
     -webkit-text-stroke: 1px var(--dourado);
+    font-size: 32px;
 }
 
 .deliverables-grid {
