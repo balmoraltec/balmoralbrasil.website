@@ -869,6 +869,161 @@ body {
     display: inline-block;
 }
 
+/* Seção A Balmoral Brasil */
+.about-balmoral-section {
+    padding: 100px 0;
+    background: var(--branco);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 50px;
+    align-items: center;
+    margin-bottom: 80px;
+}
+
+.about-subtitle {
+    font-size: 1.5rem;
+    color: var(--verde-musgo-700);
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.about-text p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    color: var(--texto-escuro);
+}
+
+.mission-box {
+    background: var(--verde-musgo-profundo);
+    color: var(--branco);
+    padding: 50px;
+    border-radius: 20px;
+    border: 2px solid var(--dourado);
+    box-shadow: var(--shadow-lg);
+}
+
+.mission-icon {
+    color: var(--dourado);
+    margin-bottom: 20px;
+}
+
+.mission-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--dourado);
+    margin-bottom: 20px;
+}
+
+.mission-box p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    opacity: 0.95;
+}
+
+.values-wrapper {
+    margin-bottom: 80px;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.value-card {
+    background: var(--fundo-claro);
+    padding: 40px;
+    border-radius: 15px;
+    border-bottom: 5px solid var(--dourado);
+    transition: var(--transition);
+}
+
+.value-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-md);
+}
+
+.value-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.value-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--verde-musgo-900);
+    margin-bottom: 15px;
+}
+
+.value-card p {
+    font-size: 1.1rem;
+    color: var(--texto-suave);
+    line-height: 1.6;
+}
+
+.deliverables-wrapper {
+    padding: 80px 50px;
+    background: var(--verde-musgo-profundo);
+    border-radius: 30px;
+    text-align: center;
+}
+
+.deliverables-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+    text-align: left;
+}
+
+.deliverable-item {
+    display: flex;
+    gap: 20px;
+}
+
+.deliverable-check {
+    background: var(--dourado);
+    color: var(--verde-musgo-profundo);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    flex-shrink: 0;
+    margin-top: 5px;
+}
+
+.deliverable-content h3 {
+    color: var(--dourado);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.deliverable-content p {
+    color: var(--branco);
+    opacity: 0.9;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 992px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .deliverables-wrapper {
+        padding: 40px 20px;
+    }
+}
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
