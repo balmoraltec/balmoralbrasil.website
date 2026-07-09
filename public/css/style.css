@@ -341,8 +341,8 @@ body {
 .site-footer {
     background: var(--verde-musgo-900);
     color: #e5e8e4;
-    border-top: 5px solid var(--dourado);
-    padding: 60px 0 20px 0;
+    border-top: 2px solid var(--dourado);
+    padding: 40px 0 20px 0;
 }
 
 .footer-grid {
@@ -772,8 +772,8 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    padding-bottom: 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 .footer-brand-text {
@@ -785,16 +785,35 @@ body {
     color: var(--branco);
     text-decoration: none;
     margin: 0 10px;
+    font-size: 0.85rem;
+    opacity: 0.9;
+    transition: var(--transition);
+}
+
+.footer-links a:hover {
+    color: var(--dourado);
+    opacity: 1;
 }
 
 .footer-legal {
-    padding-top: 20px;
-    font-size: 0.75rem;
-    opacity: 0.7;
+    padding-top: 15px;
+    font-size: 0.7rem;
+    opacity: 0.6;
     text-align: center;
 }
 
-/* Nova Seção Solução Balmoral */
+.brand-logo-footer {
+    height: 120px;
+    width: auto;
+    display: block;
+    mix-blend-mode: screen;
+}
+
+@media (max-width: 480px) {
+    .brand-logo-footer {
+        height: 80px;
+    }
+}
 .solucao-balmoral-section {
     padding: 100px 0;
     background: linear-gradient(rgba(8, 29, 20, 0.95), rgba(8, 29, 20, 0.95)), url('../img/pattern.png'); /* Assumindo um padrão ou cor sólida */
