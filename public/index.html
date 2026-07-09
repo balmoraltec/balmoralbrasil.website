@@ -44,8 +44,10 @@
                 
                 <div id="diagnostico-intro">
                     <h2 class="section-title-gold">Diagnóstico de Acesso ao Crédito Verde</h2>
-                    <p>Responda às perguntas abaixo para avaliar a elegibilidade da sua empresa e calcular seu Score ESG.</p>
-                    <button class="btn btn-cta-gold" onclick="startDiagnosis()">Iniciar Diagnóstico</button>
+                    <p>Avalie a elegibilidade da sua empresa e descubra seu Score ESG em menos de 2 minutos para acessar o capital mais barato do mercado.</p>
+                    <div style="text-align: center;">
+                        <button class="btn btn-cta-gold btn-large" onclick="startDiagnosis()">Iniciar Diagnóstico</button>
+                    </div>
                 </div>
 
                 <div id="diagnostico-perguntas" style="display: none;">
@@ -56,10 +58,10 @@
                     <div id="pergunta-container">
                         <!-- Pergunta 1: Faturamento (Filtro de Corte) -->
                         <div class="pergunta-step" id="step-1">
-                            <h3>Pergunta 1: Qual é a Receita Operacional Bruta Anual (Faturamento) da sua empresa?</h3>
-                            <div class="form-group">
+                            <h3>1. Qual é a Receita Operacional Bruta Anual (Faturamento) da sua empresa?</h3>
+                            <div class="form-group" style="position: relative;">
                                 <select id="faturamento" class="form-control">
-                                    <option value="">Selecione uma opção...</option>
+                                    <option value="">Selecione a faixa de faturamento...</option>
                                     <option value="A">Abaixo de R$ 4,8 Milhões</option>
                                     <option value="B">De R$ 4,8 Milhões a R$ 16 Milhões</option>
                                     <option value="C">De R$ 16 Milhões a R$ 300 Milhões</option>
@@ -70,7 +72,7 @@
 
                         <!-- Pergunta 2: Ambiental -->
                         <div class="pergunta-step" id="step-2" style="display: none;">
-                            <h3>Pergunta 2: Sua empresa possui políticas formais de redução de emissão de carbono ou gestão de resíduos?</h3>
+                            <h3>2. Sua empresa possui políticas formais de redução de emissão de carbono ou gestão de resíduos?</h3>
                             <div class="options-grid">
                                 <label class="option-card">
                                     <input type="radio" name="p2" value="25">
@@ -93,7 +95,7 @@
 
                         <!-- Pergunta 3: Social -->
                         <div class="pergunta-step" id="step-3" style="display: none;">
-                            <h3>Pergunta 3: Como está estruturada a política de diversidade, inclusão e bem-estar dos colaboradores?</h3>
+                            <h3>3. Como está estruturada a política de diversidade, inclusão e bem-estar dos colaboradores?</h3>
                             <div class="options-grid">
                                 <label class="option-card">
                                     <input type="radio" name="p3" value="25">
@@ -116,7 +118,7 @@
 
                         <!-- Pergunta 4: Governança -->
                         <div class="pergunta-step" id="step-4" style="display: none;">
-                            <h3>Pergunta 4: Sua empresa possui Conselho de Administração, Auditoria Externa ou Código de Ética formalizado?</h3>
+                            <h3>4. Sua empresa possui Conselho de Administração, Auditoria Externa ou Código de Ética formalizado?</h3>
                             <div class="options-grid">
                                 <label class="option-card">
                                     <input type="radio" name="p4" value="25">
@@ -139,7 +141,7 @@
 
                         <!-- Pergunta 5: Estratégia Verde -->
                         <div class="pergunta-step" id="step-5" style="display: none;">
-                            <h3>Pergunta 5: Existe um plano estratégico para investimento em tecnologias limpas ou eficiência energética nos próximos 24 meses?</h3>
+                            <h3>5. Existe um plano estratégico para investimento em tecnologias limpas ou eficiência energética nos próximos 24 meses?</h3>
                             <div class="options-grid">
                                 <label class="option-card">
                                     <input type="radio" name="p5" value="25">
@@ -578,6 +580,7 @@
             document.getElementById('faturamento').value = '';
             const radios = document.querySelectorAll('input[type="radio"]');
             radios.forEach(r => r.checked = false);
+            document.querySelectorAll('.option-card').forEach(card => card.classList.remove('selected'));
             
             updateStepVisibility();
         }
@@ -607,6 +610,20 @@
             const progress = (currentStep / 5) * 100;
             document.getElementById('progress-bar').style.width = `${progress}%`;
         }
+
+        // Adiciona classe para destaque visual ao selecionar opção
+        document.addEventListener('change', function(e) {
+            if (e.target.name && e.target.name.startsWith('p')) {
+                const parent = e.target.closest('.option-card');
+                if (parent) {
+                    // Remove de todos no mesmo step
+                    const step = parent.closest('.pergunta-step');
+                    step.querySelectorAll('.option-card').forEach(card => card.classList.remove('selected'));
+                    // Adiciona no selecionado
+                    parent.classList.add('selected');
+                }
+            }
+        });
 
         function nextStep() {
             if (currentStep === 1) {
