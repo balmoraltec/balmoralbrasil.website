@@ -1,0 +1,96 @@
+:root {
+    --verde-musgo: #0B2B1D;
+    --dourado: #D4AF37;
+    --branco-gelo: #FAFAFA;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--branco-gelo);
+    color: var(--verde-musgo);
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--verde-musgo);
+    color: var(--branco-gelo);
+    padding: 2rem 1rem;
+    text-align: center;
+    border-bottom: 4px solid var(--dourado);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #fff;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--verde-musgo);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    text-align: left;
+}
+
+.benefit-card {
+    background: #FFF;
+    padding: 30px;
+    border-left: 4px solid var(--dourado);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+}
+
+.benefit-card h3 {
+    color: var(--verde-musgo);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+footer {
+    background-color: var(--verde-musgo);
+    color: var(--branco-gelo);
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 60px;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--dourado);
+    color: var(--verde-musgo);
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #c49d2e;
+}
