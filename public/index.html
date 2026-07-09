@@ -31,12 +31,183 @@
                 <a href="#a-balmoral" class="btn-nav">A Balmoral Brasil</a>
             </nav>
             <div class="header-actions">
-                <a href="#" class="btn btn-cta-gold">Solicitar Diagnóstico ESG</a>
+                <a href="javascript:void(0)" onclick="openDiagnosis()" class="btn btn-cta-gold">Solicitar Diagnóstico ESG</a>
             </div>
         </div>
     </header>
 
     <main>
+        <!-- MODAL DIAGNÓSTICO -->
+        <div id="modal-diagnostico" class="modal-overlay">
+            <div class="modal-content diagnostico-container">
+                <button class="close-modal" onclick="closeDiagnosis()">&times;</button>
+                
+                <div id="diagnostico-intro">
+                    <h2 class="section-title-gold">Diagnóstico de Acesso ao Crédito Verde</h2>
+                    <p>Responda às perguntas abaixo para avaliar a elegibilidade da sua empresa e calcular seu Score ESG.</p>
+                    <button class="btn btn-cta-gold" onclick="startDiagnosis()">Iniciar Diagnóstico</button>
+                </div>
+
+                <div id="diagnostico-perguntas" style="display: none;">
+                    <div class="progress-bar-container">
+                        <div id="progress-bar" class="progress-bar"></div>
+                    </div>
+                    
+                    <div id="pergunta-container">
+                        <!-- Pergunta 1: Faturamento (Filtro de Corte) -->
+                        <div class="pergunta-step" id="step-1">
+                            <h3>Pergunta 1: Qual é a Receita Operacional Bruta Anual (Faturamento) da sua empresa?</h3>
+                            <div class="form-group">
+                                <select id="faturamento" class="form-control">
+                                    <option value="">Selecione uma opção...</option>
+                                    <option value="A">Abaixo de R$ 4,8 Milhões</option>
+                                    <option value="B">De R$ 4,8 Milhões a R$ 16 Milhões</option>
+                                    <option value="C">De R$ 16 Milhões a R$ 300 Milhões</option>
+                                    <option value="D">Acima de R$ 300 Milhões</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Pergunta 2: Ambiental -->
+                        <div class="pergunta-step" id="step-2" style="display: none;">
+                            <h3>Pergunta 2: Sua empresa possui políticas formais de redução de emissão de carbono ou gestão de resíduos?</h3>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="p2" value="25">
+                                    <span>Sim, possuímos métricas auditáveis e relatórios anuais.</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="p2" value="15">
+                                    <span>Sim, temos iniciativas internas, mas sem auditoria externa.</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="p2" value="5">
+                                    <span>Estamos começando a estruturar agora.</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="p2" value="0">
+                                    <span>Ainda não possuímos ações formais.</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Pergunta 3: Social -->
+                        <div class="pergunta-step" id="step-3" style="display: none;">
+                            <h3>Pergunta 3: Como está estruturada a política de diversidade, inclusão e bem-estar dos colaboradores?</h3>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="p3" value="25">
+                                    <span>Possuímos comitê de diversidade e programas ativos de inclusão.</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="p3" value="15">
+                                    <span>Temos políticas de RH bem definidas, mas sem comitê específico.</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="p3" value="5">
+                                    <span>Realizamos ações pontuais ao longo do ano.</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="p3" value="0">
+                                    <span>Não possuímos políticas formais nessa área.</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Pergunta 4: Governança -->
+                        <div class="pergunta-step" id="step-4" style="display: none;">
+                            <h3>Pergunta 4: Sua empresa possui Conselho de Administração, Auditoria Externa ou Código de Ética formalizado?</h3>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="p4" value="25">
+                                    <span>Sim, temos os três pilares estruturados.</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="p4" value="15">
+                                    <span>Temos Código de Ética e Auditoria, mas não Conselho formal.</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="p4" value="5">
+                                    <span>Possuímos apenas Código de Ética.</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="p4" value="0">
+                                    <span>Estamos em fase de estruturação de governança.</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Pergunta 5: Estratégia Verde -->
+                        <div class="pergunta-step" id="step-5" style="display: none;">
+                            <h3>Pergunta 5: Existe um plano estratégico para investimento em tecnologias limpas ou eficiência energética nos próximos 24 meses?</h3>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="p5" value="25">
+                                    <span>Sim, com orçamento aprovado e cronograma de execução.</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="p5" value="15">
+                                    <span>Temos o plano, mas estamos buscando o financiamento.</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="p5" value="5">
+                                    <span>O tema está em discussão na diretoria.</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="p5" value="0">
+                                    <span>Ainda não priorizamos este investimento.</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons" style="margin-top: 30px; display: flex; justify-content: space-between;">
+                        <button id="btn-voltar" class="btn-ghost" onclick="prevStep()" style="display: none;">Voltar</button>
+                        <button id="btn-proximo" class="btn btn-cta-gold" onclick="nextStep()">Próximo</button>
+                    </div>
+                </div>
+
+                <!-- TELAS DE SAÍDA -->
+                <div id="resultado-diagnostico" style="display: none;">
+                    <!-- Opção A: Tração -->
+                    <div id="tela-tracao" class="resultado-step" style="display: none;">
+                        <h2 class="title-gold">Sua empresa está em fase de tração.</h2>
+                        <p>Continue acompanhando os conteúdos da Balmoral Brasil Holding para se preparar para o próximo nível.</p>
+                        <button class="btn btn-cta-gold" onclick="closeDiagnosis()">Fechar</button>
+                    </div>
+
+                    <!-- Opção B: Elegível (Morno) -->
+                    <div id="tela-elegivel" class="resultado-step" style="display: none;">
+                        <h2 class="title-gold">Classificação: Elegível (Morno)</h2>
+                        <div class="score-display">Seu Score ESG: <span id="final-score-b">0</span>%</div>
+                        <p>Sua empresa tem grande potencial. Recomendamos a contratação imediata da plataforma Green PIN para que você comece a organizar a casa e entrar no radar dos fundos.</p>
+                        <div class="cta-wrapper">
+                            <a href="#" class="btn btn-cta-gold">Contratar Green PIN Agora</a>
+                        </div>
+                    </div>
+
+                    <!-- Opção C: A-Player (Quente) -->
+                    <div id="tela-aplayer" class="resultado-step" style="display: none;">
+                        <h2 class="title-gold">Classificação: A-Player (Quente) 🔥</h2>
+                        <div class="score-display">Seu Score ESG: <span id="final-score-c">0</span>%</div>
+                        <p>Parabéns! Sua empresa está no nível ideal para estruturação. Vamos agendar uma reunião de estruturação do seu Dossiê de Prontidão.</p>
+                        <div class="cta-wrapper">
+                            <a href="https://calendly.com/balmoral-brasil/reuniao-estruturacao" target="_blank" class="btn btn-cta-gold">Agendar na Agenda Exclusiva (Calendly)</a>
+                        </div>
+                    </div>
+
+                    <!-- Opção D: Enterprise -->
+                    <div id="tela-enterprise" class="resultado-step" style="display: none;">
+                        <h2 class="title-gold">Classificação: Enterprise / Grande Empresa</h2>
+                        <div class="score-display">Seu Score ESG: <span id="final-score-d">0</span>%</div>
+                        <div class="alert-box">Alerta Máximo: Nossa diretoria foi notificada.</div>
+                        <p>Sua operação demanda uma estrutura personalizada de alta escala. Você receberá um e-mail automático em instantes. O convite para Patrocinar o Troféu Balmoral na TV será o foco de nossa reunião estratégica.</p>
+                        <button class="btn btn-cta-gold" onclick="closeDiagnosis()">Concluído</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- SEÇÃO 2: HERO -->
         <section id="hero" class="hero-section">
             <div class="container">
@@ -44,7 +215,7 @@
                 <h2>
                     Bilhões em crédito subsidiado estão disponíveis, mas os bancos fecharam as portas para empresas sem governança comprovada. A Balmoral Brasil audita, estrutura e destrava o seu acesso às linhas de Crédito Verde com taxas incomparáveis.
                 </h2>
-                <a href="#" class="btn-hero-main">Iniciar Diagnóstico de Acesso ao Crédito Verde (Gratuito)</a>
+                <a href="javascript:void(0)" onclick="openDiagnosis()" class="btn-hero-main">Iniciar Diagnóstico de Acesso ao Crédito Verde (Gratuito)</a>
                 <p class="disclaimer">Exclusivo para empresas com faturamento consolidado e liderança C-Level.</p>
             </div>
         </section>
@@ -131,7 +302,7 @@
                 </div>
 
                 <div class="cta-wrapper">
-                    <a href="#" class="btn btn-cta-gold btn-large">SOLICITAR DIAGNÓSTICO DE ACESSO AO CREDITO VERDE ESG GRATUITO</a>
+                    <a href="javascript:void(0)" onclick="openDiagnosis()" class="btn btn-cta-gold btn-large">SOLICITAR DIAGNÓSTICO DE ACESSO AO CREDITO VERDE ESG GRATUITO</a>
                 </div>
 
                 <div class="scoring-elite-box">
@@ -145,7 +316,7 @@
                 </div>
 
                 <div class="cta-wrapper">
-                    <a href="#" class="btn btn-cta-gold btn-large">Começar Avaliação Gratuita</a>
+                    <a href="javascript:void(0)" onclick="openDiagnosis()" class="btn btn-cta-gold btn-large">Começar Avaliação Gratuita</a>
                 </div>
 
                 <!-- SEÇÃO 4: PROVA SOCIAL E URGÊNCIA -->
@@ -155,7 +326,7 @@
                         Avalie agora a elegibilidade da sua empresa. Nosso sistema de inteligência classificará seu nível de prontidão em menos de 2 minutos e indicará o caminho exato para a captação.
                     </p>
                     <div class="cta-wrapper" style="margin-bottom: 0;">
-                        <a href="#" class="btn btn-cta-gold btn-large">Medir meu Score ESG Agora</a>
+                        <a href="javascript:void(0)" onclick="openDiagnosis()" class="btn btn-cta-gold btn-large">Medir meu Score ESG Agora</a>
                     </div>
                 </div>
             </div>
@@ -171,7 +342,7 @@
                     Programa TV Troféu Balmoral ESG TOP100+ BRASIL - 4ª Temporada. O "Oscar Corporativo ESG" da TV Brasileira, transmitido ao vivo para mais de 81 milhões de telespectadores na TV RECORD e TV RBI. Uma celebração exclusiva da elite empresarial que entendeu que o lucro com propósito é o único futuro possível.
                 </p>
                 <div class="button-group">
-                    <a href="#" class="btn btn-cta-gold btn-large">Quero Indicar Minha Empresa</a>
+                    <a href="javascript:void(0)" onclick="openDiagnosis()" class="btn btn-cta-gold btn-large">Quero Indicar Minha Empresa</a>
                     <a href="#" class="btn-ghost-transparent btn-large">Seja um Patrocinador Master</a>
                 </div>
             </div>
@@ -366,6 +537,131 @@
     </footer>
 
     <script>
+        let currentStep = 1;
+        let totalScore = 0;
+        let faturamentoValue = '';
+
+        function openDiagnosis() {
+            document.getElementById('modal-diagnostico').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            resetDiagnosis();
+        }
+
+        function closeDiagnosis() {
+            document.getElementById('modal-diagnostico').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function resetDiagnosis() {
+            currentStep = 1;
+            totalScore = 0;
+            faturamentoValue = '';
+            document.getElementById('diagnostico-intro').style.display = 'block';
+            document.getElementById('diagnostico-perguntas').style.display = 'none';
+            document.getElementById('resultado-diagnostico').style.display = 'none';
+            
+            // Reset fields
+            document.getElementById('faturamento').value = '';
+            const radios = document.querySelectorAll('input[type="radio"]');
+            radios.forEach(r => r.checked = false);
+            
+            updateStepVisibility();
+        }
+
+        function startDiagnosis() {
+            document.getElementById('diagnostico-intro').style.display = 'none';
+            document.getElementById('diagnostico-perguntas').style.display = 'block';
+            updateStepVisibility();
+        }
+
+        function updateStepVisibility() {
+            for (let i = 1; i <= 5; i++) {
+                const step = document.getElementById(`step-${i}`);
+                if (step) step.style.display = (i === currentStep) ? 'block' : 'none';
+            }
+            
+            const btnVoltar = document.getElementById('btn-voltar');
+            if (btnVoltar) btnVoltar.style.display = (currentStep > 1) ? 'block' : 'none';
+            
+            const btnProximo = document.getElementById('btn-proximo');
+            if (btnProximo) btnProximo.innerText = (currentStep === 5) ? 'Ver Resultado' : 'Próximo';
+            
+            updateProgressBar();
+        }
+
+        function updateProgressBar() {
+            const progress = (currentStep / 5) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+        }
+
+        function nextStep() {
+            if (currentStep === 1) {
+                faturamentoValue = document.getElementById('faturamento').value;
+                if (!faturamentoValue) {
+                    alert('Por favor, selecione uma opção de faturamento.');
+                    return;
+                }
+                
+                if (faturamentoValue === 'A') {
+                    showResult('tela-tracao');
+                    return;
+                }
+            } else {
+                const currentRadio = document.querySelector(`input[name="p${currentStep}"]:checked`);
+                if (!currentRadio) {
+                    alert('Por favor, selecione uma opção antes de prosseguir.');
+                    return;
+                }
+            }
+
+            if (currentStep < 5) {
+                currentStep++;
+                updateStepVisibility();
+            } else {
+                calculateAndShowFinalResult();
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStepVisibility();
+            }
+        }
+
+        function calculateAndShowFinalResult() {
+            totalScore = 0;
+            for (let i = 2; i <= 5; i++) {
+                const selected = document.querySelector(`input[name="p${i}"]:checked`);
+                if (selected) {
+                    totalScore += parseInt(selected.value);
+                }
+            }
+
+            if (faturamentoValue === 'B') {
+                document.getElementById('final-score-b').innerText = totalScore;
+                showResult('tela-elegivel');
+            } else if (faturamentoValue === 'C') {
+                document.getElementById('final-score-c').innerText = totalScore;
+                showResult('tela-aplayer');
+            } else if (faturamentoValue === 'D') {
+                document.getElementById('final-score-d').innerText = totalScore;
+                showResult('tela-enterprise');
+                // Simulação de envio de e-mail automático
+                console.log('Alerta: Empresa Enterprise detectada. Enviando e-mail para Caio/Amanda...');
+            }
+        }
+
+        function showResult(resultId) {
+            document.getElementById('diagnostico-perguntas').style.display = 'none';
+            document.getElementById('resultado-diagnostico').style.display = 'block';
+            
+            const screens = ['tela-tracao', 'tela-elegivel', 'tela-aplayer', 'tela-enterprise'];
+            screens.forEach(s => {
+                document.getElementById(s).style.display = (s === resultId) ? 'block' : 'none';
+            });
+        }
+
         // Smooth scroll adjustment for header height
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
