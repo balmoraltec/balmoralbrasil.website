@@ -1,9 +1,8 @@
 {
   "version": 2,
-  "public": true,
   "name": "balmoralbrasil-website",
+  "cleanUrls": true,
   "rewrites": [
     { "source": "/(.*)", "destination": "/public/$1" }
-  ],
-  "cleanUrls": true
+  ]
 }
