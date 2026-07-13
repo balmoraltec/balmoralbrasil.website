@@ -204,11 +204,11 @@ body {
 
 @media (max-width: 480px) {
     .brand-logo {
-        height: 180px;
+        height: 80px;
     }
     .brand-text-new {
-        font-size: 1.4rem;
-        max-width: 250px;
+        font-size: 1.1rem;
+        max-width: 200px;
     }
 }
 
@@ -404,7 +404,45 @@ body {
     color: #8e9a91;
 }
 
-/* Novas Seções */
+.urgencia-box {
+    text-align: center;
+    max-width: 900px;
+    margin: 60px auto 0;
+    border-top: 4px solid var(--dourado);
+    background: var(--branco);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--borda);
+}
+
+.urgencia-box h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.urgencia-box p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: var(--texto-suave);
+}
+
+.urgencia-box .cta-wrapper {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .urgencia-box {
+        padding: 25px 20px;
+        margin-top: 40px;
+    }
+    .urgencia-box h2 {
+        font-size: 1.5rem;
+    }
+    .urgencia-box p {
+        font-size: 1rem;
+    }
+}
 .hero-section {
     background: linear-gradient(135deg, var(--verde-musgo-900) 0%, #16422f 100%);
     color: #FAFAFA;
@@ -1169,6 +1207,12 @@ body {
     margin-bottom: 80px;
 }
 
+@media (max-width: 992px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .about-subtitle {
     font-size: 1.5rem;
     color: var(--verde-musgo-700);
@@ -1354,7 +1398,7 @@ body {
 
 .benefits-grid-new {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     text-align: left;
 }
@@ -1665,6 +1709,12 @@ body {
     margin-bottom: 50px;
 }
 
+@media (max-width: 480px) {
+    .beneficio-balao {
+        min-width: 100%;
+    }
+}
+
 .beneficio-balao {
     flex: 1;
     min-width: 250px;
@@ -1788,6 +1838,25 @@ body {
     position: relative;
     box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 100px rgba(212, 175, 55, 0.1);
     color: var(--branco);
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 40px 20px 30px;
+        border-radius: 16px;
+    }
+    .diagnostico-container h2 {
+        font-size: 1.6rem;
+    }
+    .pergunta-step h3 {
+        font-size: 1.2rem;
+    }
+    .close-modal {
+        top: 15px;
+        right: 15px;
+        width: 36px;
+        height: 36px;
+    }
 }
 
 .diagnostico-container h2 {
@@ -1920,6 +1989,12 @@ body {
     transform: translateX(10px);
 }
 
+@media (max-width: 768px) {
+    .option-card:hover {
+        transform: none;
+    }
+}
+
 .option-card.selected {
     background: rgba(212, 175, 55, 0.1);
     border-color: var(--dourado);
@@ -1937,6 +2012,18 @@ body {
 .option-card span {
     font-size: 1.1rem;
     color: rgba(255,255,255,0.9);
+}
+
+@media (max-width: 768px) {
+    .option-card {
+        padding: 15px;
+    }
+    .option-card span {
+        font-size: 0.95rem;
+    }
+    .score-display {
+        font-size: 2.5rem;
+    }
 }
 
 .score-display {
